@@ -4,10 +4,7 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-mongoose.connect('mongodb://127.0.0.1:27017/test', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect('mongodb://127.0.0.1:27017/test')
     .then(() => {
         console.log('Connected to test database');
     })
