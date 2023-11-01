@@ -27,9 +27,16 @@ const User = mongoose.model('his', UserSchema);
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, resp) => {
-    resp.send('App is Working');
+app.get('/', async (req, resp) => {
+    try {
+        const users = await User.find({}, 'name email date');
+        resp.json(users);
+    } catch (e) {
+        console.error(e);
+        resp.status(500).send('Failed to retrieve user data');
+    }
 });
+
 
 app.post('/register', async (req, resp) => {
     try {
