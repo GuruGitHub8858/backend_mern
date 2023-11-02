@@ -4,9 +4,9 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+mongoose.connect('mongodb://127.0.0.1:27017/vcet')
     .then(() => {
-        console.log('Connected to test database');
+        console.log('Connected to vcet database');
     })
     .catch((err) => {
         console.error(err);
@@ -14,12 +14,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/test')
 
 const UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: Number, required: true, unique: true },
     date: { type: Date, default: Date.now }
 });
 
 
-const User = mongoose.model('his', UserSchema);
+const User = mongoose.model('homes', UserSchema);
 
 app.use(express.json());
 app.use(cors());
